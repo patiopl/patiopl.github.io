@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let n1
+        function hell() {
+            let c = 0
+            let txt = ''
+            n1 = parseInt(document.getElementById('num').value)
+            while (c < n1) {
+                txt += "Hello <br>"
+                c++;
+            }
+            document.getElementById('output').innerHTML = txt
+        }
+    </script>
+    <title>15-loop-while.html</title>
+</head>
+<body>
+    ป้อนตัวเลข : <input type="text" name="" id="num">
+    <br>
+    <br>
+    <input type="submit" value="Submit" onclick="hell()">
+    <br>
+    <br>
+    <p id="output"></p>
+</body>
+
+</html>
