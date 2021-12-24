@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table{align-self: center; border: 1px solid; border-radius: 10px;border-spacing: 3px;}
+        td{padding: 5px;}
+        button{ border-radius: 5px; width: 60px; height: 30px;font-weight: bold;}
+        #disp{ border-radius: 5px; width: 265px; height: 30px;font-weight: bolder;text-align: right;
+        font-size: larger;}
+    </style>
+</head>
+<body>
+    <table>
+        <tr><td colspan="4"><input type="text" id="disp" readonly value="0"></td></tr>
+        <tr><td><button id="X2">X^2</button></td><td><button class="oper" id="XY">X^y</button></td><td><button id="1X">1/X</button></td><td><button class="oper" id="mod">Mod</button></td></tr>
+        <tr><td><button id="sqr">Square</button></td><td><button class="oper" id="divide">/</button></td><td><button class="oper" id="multi">*</button></td><td><button class="oper" id="minus">-</button></td></tr>
+        <tr><td><button class="num" id="7">7</button></td><td><button class="num" id="8">8</button></td><td><button class="num" id="9">9</button></td><td><button class="oper" id="plus">+</button></td></tr>
+        <tr><td><button class="num" id="4">4</button></td><td><button class="num" id="5">5</button></td><td><button class="num" id="6">6</button></td><td><button class="oper" id="per">%</button></td></tr>
+        <tr><td><button class="num" id="1">1</button></td><td><button class="num" id="2">2</button></td><td><button cla="num" id="3">3</button></td><td rowspan="2"><button id="ex" style="height: 72px;">=</button></tdss></tr>
+        <tr><td><button id="CE">CE</button></td><td><button class="num" id="0">0</button></td><td><button id="dot">.</button></td></tr>
+    </table>
+
+<script src="jquery.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+        let operator
+        let operand
+        let got_oper=false
+
+        $('#CE').click(function(){
+            oper=''
+            $("#disp").val(0)
+            got_oper=false
+        });
+
+        $(".oper").click(function(){
+            got_oper=true;
+            operand=$('#disp').val()
+            operator=$(this).attr('id')
+            $('#disp').val(0)
+        });
+
+        $("#ex").click(function(){
+            switch(operator){
+                case 'plus':$("#disp").val(parseFloat(operand)+parseFloat($("#disp").val())); break;
+                case 'minus':$("#disp").val(parseFloat(operand)-parseFloat($("#disp").val()));break;
+                case 'multi':$("#disp").val(parseFloat(operand)*parseFloat($("#disp").val()));break;
+                case 'divide':$("#disp").val(parseFloat(operand)/parseFloat($("#disp").val()));break;
+                case 'mod':$("#disp").val(parseFloat(operand)+parseFloat($("#disp").val()));break;
+            }
+        });
+        $(".num").click(function(){
+            let disp=$("#disp").val()
+            if(disp!=0){
+                $("#disp").val(disp+$(this).attr('id'))
+            }else{
+                $("#disp").val($(this).attr('id'))
+            }
+           
+        });
+
+    });
+</script>
+</body>
+</html>
