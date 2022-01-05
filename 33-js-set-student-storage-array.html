@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33-js-set-student-storage-array.html</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<style>
+    .jumbotron{
+        position:relative;
+        overflow:hidden;
+    }
+
+    video{
+        position:absolute;
+        top:0;
+        z-index: 1;
+        height:100%;
+        width:100%;
+        object-fit: cover;
+    }
+
+    .container{
+        z-index: 2;
+        position: relative;
+    }
+
+    body{
+        font-family: 'Prompt', sans-serif;
+        background-color:rgb(102, 51, 22);
+    }
+</style>
+</head>
+<body>
+    <!-- video -->
+    <div class="jumbotron jumbotron-fluid mb-0 text-light" style="background-color: rgb(9, 255, 0);">
+        <video  autoplay loop muted>
+            <source src="https://bit.ly/3elvMUE" type="video/mp4">
+          </video>
+        <div class="container">
+          <h1 class="display-3">Patipol Naunami</h1>
+          <p class="lead">Raayong technical college</p>
+        </div>
+      </div>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: coral;">
+        <a class="navbar-brand" href="#">Suthipong</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- ป้อนข้อมูลนักเรียน -->
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="24-set-local-storage.html">Page24</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="25-get-local-storage.html">Page25</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container p-5">
+    <div class="d-flex justify-content-center">
+        <div class="card" style="width: 30rem;">
+            <img src="https://bit.ly/3H8KBqg";
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">บันทึกข้อมูลพนักงาน</h5>
+                <p class="card-text">
+                <div class="form-group">
+                    <label for="">รหัสพนักงาน</label>
+                    <input type="text" class="form-control" name="" id="empid" aria-describedby="helpId"
+                        placeholder="">
+                    <small id="helpId" class="form-text text-muted"></small>
+                </div>
+                <div class="form-group">
+                    <label for="">ชื่อพนักงาน-นามสกุล</label>
+                    <input type="text" class="form-control" name="" id="empname" aria-describedby="helpId"
+                        placeholder="">
+                    <small id="helpId" class="form-text text-muted"></small>
+                </div>
+                <input class="btn btn-danger w-25" type="submit" value="Submit" onclick="setdata()">
+                <input class="btn btn-danger w-25" type="reset" value="Reset" onclick="resetdata()">
+                <input class="btn btn-warning text-light w-25" type="button" value="Delete Storage"onclick="deleteStorage()">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Footer -->
+      <footer class="fixed-bottom">
+
+        <p class="text-center my-0 p-2 text-light"></p>
+        <p class="text-md-center my-0 p-2" style="background-color: brown; font-style: italic;">Patipol Naunami p.2/1 No.16</p>
+
+    </footer>
+    <!-- จาวาสคริป ของ Bootstrap 4.6 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js&quot;
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js&quot;
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+    <!-- จาวาสคริป -->
+    <script>
+        let local_employee = localStorage.getItem('employee')
+        let employee = []
+        let empid
+        let empname
+        function setdata() {
+            employee = eval(local_employee)
+            empid = document.getElementById('empid').value
+            empname = document.getElementById('empname').value
+            if (empid != '' && empname != '') {
+                if (employee == null) {
+                    employee = [{ "empid": empid, "empname": empname }]
+                } else {
+                    employee.push({ "empid": empid, "empname": empname })
+                }
+                localStorage.setItem('employee', JSON.stringify(employee))
+                local_employee = localStorage.getItem('employee')
+                document.getElementById('empid').value = ''
+                document.getElementById('empname').value = ''
+                alert('บันทึกข้อมูลเรียนร้อยแล้ว')
+            } else {
+                alert('ป้อนข้อมูล ซิ โว้ยยยยยยย!!!!!')
+            }
+
+        }
+
+        function resetdata() {
+            document.getElementById('empid').value = ''
+            document.getElementById('empname').value = ''
+        }
+
+        function deleteStorage() {
+            if (confirm('ต้องการลบใช้หรือไม่')) {
+                localStorage.removeItem('employee')
+                employee = []
+                local_employee = null
+            }
+        }
+    </script>
+</body>
+
+</html>
